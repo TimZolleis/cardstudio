@@ -17,7 +17,7 @@ if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Form');
+$routes->setDefaultController('FormController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -35,7 +35,8 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Form::index');
+$routes->get('/', 'FormController::index');
+$routes->get('/', 'FormController::createRequest');
 $routes->get('pages', 'Pages::index');
 $routes->get('(:any)', 'Pages::view/$1');
 
