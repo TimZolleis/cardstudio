@@ -32,11 +32,11 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => '',
-        'username' => '',
-        'password' => '',
-        'database' => '',
-        'DBDriver' => 'MySQLi',
+        'hostname' => 'xd5.serverdomain.org',
+        'username' => 'xd572_6',
+        'password' => 'gcf7KFU_bha1hvw8tmt',
+        'database' => 'xd572_db6',
+        'DBDriver' => 'MariaDB',
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),

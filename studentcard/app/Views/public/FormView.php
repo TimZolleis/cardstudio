@@ -1,50 +1,89 @@
-<div class="mx-32 mt-5 ">
-    <div id="header">
-        <p class="text-3xl font-semibold text-white">Einen Schülerausweis beantragen</p>
-        <p class="text-white">Hier können Sie ihren Schülerausweis beantragen</p>
-
+<section class="mx-32 mt-5">
+    <div>
+        <h1 class="text-white font-karla text-4xl font-bold">Einen Schülerausweis beantragen</h1>
+        <p class="text-white font-karla">Hier können Sie den Schülerausweis ihres Kindes einfach online beantragen. </p>
     </div>
 
-    <section class="w-full flex justify-center">
-        <form action="">
-            <div class="flex mt-10 items-start justify-between ">
-                <div class="flex gap-3 items-center justify-start ">
-                    <div class="w-10 h-10 rounded-full outline outline-white flex justify-center items-center"><p
-                                class="font-semibold text-white">
-                            1
+
+    <form action="" method="post">
+        <section class="mt-10">
+
+            <div class="grid grid-cols-2 w-full gap-16">
+
+                <div class="flex items-center gap-6">
+                    <div>
+                        <h1 class="text-3xl font-bold font-karla text-white">Informationen ihres Kindes</h1>
+                        <p class="text-white font-karla">
+                            Zur Erstellung eines Schülerausweises werden folgende Informationen über ihr Kind benötigt:
                         </p>
                     </div>
+                </div>
+
+
+                <div class="grid grid-cols-2 gap-5 w-full">
+
+                    <div class="flex flex-col gap-1">
+                        <label for="firstname" class="text-white font-karla">Vorname*</label>
+                        <input type="text" name="student_firstname" id="student_firstname"
+                               class="border border-card-blue rounded p-3 px-5 bg-transparent text-white font-karla">
+                    </div>
+
+                    <div class="flex flex-col gap-1">
+                        <label for="firstname" class="text-white font-karla">Nachname*</label>
+                        <input type="text" name="student_lastname" id="student_lastname"
+                               class="border border-card-blue rounded p-3 px-5 bg-transparent text-white font-karla">
+                    </div>
+
+                    <div class="flex flex-col gap-1">
+                        <label for="firstname" class="text-white font-karla">Geburtsdatum*</label>
+                        <input type="date" name="student_birthdate" id="student_birthdate"
+                               class="border border-card-blue rounded p-3 px-5 bg-transparent text-white font-karla">
+                    </div>
+
+                    <div class="flex flex-col gap-1">
+                        <label for="firstname" class="text-white font-karla">Wohnort*</label>
+                        <input type="text" name="student_residence" id="student_residence"
+                               class="border border-card-blue rounded p-3 px-5 bg-transparent text-white font-karla">
+                    </div>
+
+                </div>
+                <div class="flex items-center gap-6">
                     <div>
-                        <h1 class="text-white font-semibold text-2xl">Informationen ihres Kindes</h1>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-5">
-                    <div class="flex flex-col w-full">
-                        <label for="firstname" class="text-white">Vorname*</label>
-                        <input type="text" class="outline outline-blue-500 p-3 rounded bg-slate-900">
-                    </div>
-                    <div class="flex flex-col w-full">
-                        <label for="firstname" class="text-white">Nachname*</label>
-                        <input type="text" class="outline outline-blue-500 p-3 rounded bg-slate-900">
-                    </div>
-
-                    <div class="flex flex-col w-full">
-                        <label for="firstname" class="text-white">Geburtsdatum*</label>
-                        <input type="date" class="outline outline-blue-500 p-3 rounded bg-slate-900">
-                    </div>
-                    <div class="flex flex-col w-full">
-                        <label for="firstname" class="text-white">Wohnort*</label>
-                        <input type="text" class="outline outline-blue-500 p-3 rounded bg-slate-900">
+                        <h1 class="text-3xl font-bold font-karla text-white">Ihre Kontaktinformationen</h1>
+                        <p class="text-white font-karla">
+                            Wir benötigen ihre Kontaktinformationen, um Sie über den Fortschritt ihres Antrages zu
+                            informieren oder eventuelle Rückfragen zu stellen.
+                            Wenn ihr Ausweis abholbereit ist, werden Sie hierrüber ebenfalls benachrichtigt.
+                        </p>
                     </div>
                 </div>
 
-                <div>
 
+                <div class="flex flex-col items-center">
+                    <div class="grid grid-cols-2 gap-5 w-full">
+                        <div class="flex flex-col gap-1">
+                            <label for="firstname" class="text-white font-karla">Name*</label>
+                            <input type="text" name="parent_name" id="parent_name"
+                                   class="border border-blue-500 rounded p-3 px-5 bg-transparent text-white font-karla">
+                        </div>
+
+                        <div class="flex flex-col gap-1">
+                            <label for="firstname" class="text-white font-karla">E-Mail*</label>
+                            <input type="text" name="parent_email" id="parent_email"
+                                   class="border border-blue-500 rounded p-3 px-5 bg-transparent text-white font-karla">
+                        </div>
+                    </div>
+                    <button class="bg-card-blue px-20 py-5 text-white font-karla font-bold rounded mt-10" type="submit">Absenden</button>
                 </div>
 
             </div>
 
-            <div></div>
-        </form>
-    </section>
-</div>
+            <div class="flex">
+
+            </div>
+
+
+        </section>
+
+    </form>
+</section>
