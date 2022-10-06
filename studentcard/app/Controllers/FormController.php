@@ -4,6 +4,8 @@ class FormController extends BaseController
 {
     public function index()
     {
+
+        helper(['form']);
         return $this->render('public/TestView');
     }
 

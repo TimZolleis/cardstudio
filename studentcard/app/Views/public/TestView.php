@@ -5,7 +5,7 @@
         <p>Hier können Sie den Schülerausweis ihres Kindes einfach online beantragen. </p>
     </section>
 
-    <form action="" name="card_request" id="form">
+    <form action="/" name="card_request" id="form">
         <section class="mt-5 font-karla">
             <div>
                 <div class="flex items-center font-bold text-xl gap-3">
@@ -21,30 +21,36 @@
             <section class="grid grid-cols-1 mt-5 gap-2 md:grid-cols-2">
 
                 <div class="flex flex-col ">
-                    <label for="firstname">Vorname*</label>
+                    <label for="student_firstname">Vorname*</label>
                     <input type="text" id="student_firstname" name="student_firstname"
                            class="border border-card-blue px-3 py-2 rounded bg-transparent focus:outline-none">
+                    <p class="text-xs text-red-500 mt-2" id="student_firstname-error" hidden><?= lang("form.errors.student_firstname") ?></p>
                 </div>
 
                 <div class="flex flex-col">
-                    <label for="lastname">Nachname*</label>
+                    <label for="student_lastname">Nachname*</label>
                     <input type="text" id="student_lastname" name="student_lastname"
                            class="border border-card-blue px-3 py-2 rounded bg-transparent focus:outline-none">
+                    <p class="text-xs text-red-500 mt-2" id="student_lastname-error" hidden><?= lang("form.errors.student_lastname") ?></p>
                 </div>
 
                 <div class="flex flex-col">
-                    <label for="firstname">Geburtsdatum*</label>
+                    <label for="student_birthdate">Geburtsdatum*</label>
                     <input type="date" id="student_birthdate" name="student_birthdate"
                            class="border border-card-blue px-3 py-2 rounded bg-transparent focus:outline-none">
+                    <p class="text-xs text-red-500 mt-2" id="student_birthdate-error" hidden><?= lang("form.errors.student_birthdate") ?></p>
                 </div>
 
                 <div class="flex flex-col">
-                    <label for="firstname">Wohnort*</label>
-                    <input type="text" id="student_residence" name=student_residence"
+                    <label for="student_residence">Wohnort*</label>
+                    <input type="text" id="student_residence" name="student_residence"
                            class="border border-card-blue px-3 py-2 rounded bg-transparent focus:outline-none">
+                    <p class="text-xs text-red-500 mt-2" id="student_residence-error" hidden><?= lang("form.errors.student_residence") ?></p>
                 </div>
 
-                    <button class="bg-card-blue rounded p-3 mt-3 md:hidden" type="button" onclick="document.getElementById('section2').scrollIntoView()">Nächster Schritt</button>
+                <button class="bg-card-blue rounded p-3 mt-3 md:hidden" type="button"
+                        onclick="document.getElementById('section2').scrollIntoView()">Nächster Schritt
+                </button>
             </section>
         </section>
 
@@ -64,15 +70,17 @@
             <section class="grid grid-cols-1 mt-5 gap-2 md:grid-cols-2" id="section2">
 
                 <div class="flex flex-col">
-                    <label for="firstname">Name*</label>
+                    <label for="parent_name">Name*</label>
                     <input type="text" id="parent_name" name="parent_name"
-                           class="border border-card-blue px-3 py-2 rounded bg-transparent focus:outline-none">
+                           class="border border-card-blue px-3 py-2 rounded bg-transparent focus:outline-none" value="<?= set_value('parent_name')?>">
+                    <p class="text-xs text-red-500 mt-2" id="parent_name-error" hidden><?= lang("form.errors.parent_name") ?></p>
                 </div>
 
                 <div class="flex flex-col">
-                    <label for="lastname">Email*</label>
+                    <label for="parent_email">Email*</label>
                     <input type="text" id="parent_email" name="parent_email"
-                           class="border border-card-blue px-3 py-2 rounded bg-transparent focus:outline-none">
+                           class="border border-card-blue px-3 py-2 rounded bg-transparent focus:outline-none" value="<?= set_value('parent_email')?>">
+                    <p class="text-xs text-red-500 mt-2" id="parent_email-error" hidden><?= lang("form.errors.parent_email") ?></p>
                 </div>
 
                 <button class="bg-card-blue rounded p-3 mt-5 md:col-span-2" type="submit" id="button">Absenden</button>
@@ -82,5 +90,7 @@
 
         </section>
     </form>
+
+    <div class="text-red-500 outline-red-500"> </div>
 
 </section>
