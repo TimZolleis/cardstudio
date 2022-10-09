@@ -1,21 +1,15 @@
 <?php
+
 namespace App\Models;
 
+use CodeIgniter\Model;
 
-use App\Model\InformationModel;
+class RequestModel extends Model
+{
 
-class RequestModel {
-
-    public int $id;
-    public string $applicantName;
-    public InformationModel $studentInformation;
-
-    function __construct($id, $applicantName, $studentInformation)
-    {
-        $this->id = $id;
-        $this->applicantName= $applicantName;
-        $this->studentInformation = $studentInformation;
-    }
-
+    protected $table = 'cardstudio_requests';
+    protected $allowedFields = ['student_firstname', 'student_lastname', 'student_birthdate', 'student_residence', 'student_image', 'parent_name', 'parent_email'];
+    protected $returnType = \App\Entities\RequestEntity::class;
+    protected $useTimestamps = true;
 
 }

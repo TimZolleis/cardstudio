@@ -7,7 +7,9 @@
         </section>
 
         <section>
-            <button class="px-4 py-2 rounded bg-card-blue shadow-lg shadow-card-blue/20 ">Anmelden</button>
+            <a href="<?=base_url('login') ?>" class="appearance-none">
+                <button class="px-4 py-2 rounded bg-card-blue shadow-lg shadow-card-blue/20 ">Anmelden</button>
+            </a>
         </section>
 
     </section>

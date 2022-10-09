@@ -4,7 +4,7 @@ namespace App\Model;
 
 
 
-class InformationModel {
+class StudentInformationModel {
 
     public string $student_firstname;
     public string $student_lastname;
