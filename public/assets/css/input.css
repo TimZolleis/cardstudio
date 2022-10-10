@@ -1,0 +1,17 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+@font-face {
+    font-family: "Karla";
+    src: url("../fonts/karlabold.ttf") format("truetype");
+    font-weight: bold;
+}
+@font-face {
+    font-family: "Karla";
+    src: url("../fonts/karlaregular.ttf") format("truetype");
+    font-weight: normal;
+}
+
