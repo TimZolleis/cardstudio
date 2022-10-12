@@ -2,30 +2,37 @@
 
 
 namespace App\Helpers;
-function createRequestEntity($post_request)
+
+use App\Entities\ImageEntity;
+use App\Entities\ParentEntity;
+use App\Entities\RequestEntity;
+use App\Entities\StudentEntity;
+use CodeIgniter\HTTP\IncomingRequest;
+
+/**
+ * @throws \Exception
+ */
+function createRequestEntity(IncomingRequest $request): RequestEntity
 {
-    $request_entity = new \App\Entities\RequestEntity();
 
-    $student_firstname = trim($post_request->getPost('student_firstname'));
-    $student_lastname = trim($post_request->getPost('student_lastname'));
-    $student_residence = trim($post_request->getPost('student_residence'));
-    $student_birthdate = convertDate(trim($post_request->getPost('student_birthdate')));
+    helper('image');
+    $student_firstname = trim($request->getPost('student_firstname'));
+    $student_lastname = trim($request->getPost('student_lastname'));
+    $student_residence = trim($request->getPost('student_residence'));
+    $student_birthdate = convertDate(trim($request->getPost('student_birthdate')));
+    $student_image_path = $request->getFile('student_image')->getTempName();
+    $student_image_type = $request->getFile('student_image')->getMimeType();
 
-//    Regarding parent
-    $parent_name = trim($post_request->getPost('parent_name'));
-    $parent_email = trim($post_request->getPost('parent_email'));
-
-//    Fill in entity
-    $request_entity->student_firstname = $student_firstname;
-    $request_entity->student_lastname = $student_lastname;
-    $request_entity->student_birthdate = $student_birthdate;
-    $request_entity->student_residence = $student_residence;
-
-    $request_entity->parent_name = $parent_name;
-    $request_entity->parent_email = $parent_email;
+    $parent_name = trim($request->getPost('parent_name'));
+    $parent_email = trim($request->getPost('parent_email'));
 
 
-    return $request_entity;
+
+    $student_entity = new StudentEntity($student_firstname, $student_lastname, $student_birthdate, $student_residence);
+    $parent_entity = new ParentEntity($parent_name, $parent_email);
+    $image_entity = new ImageEntity(createImage($student_image_path, $student_image_type), $student_image_type, $student_image_path);
+
+    return new RequestEntity($student_entity, $parent_entity, $image_entity);
 
 }
 

@@ -26,23 +26,26 @@ class FormController extends BaseController
         helper(['entity']);
 
         $request_entity = createRequestEntity($this->request);
+
+        print_r($request_entity->parentEntity);
+
+
         $request_model = new RequestModel();
+        $request_model->insert_data($request_entity);
 
-        $student_image = $this->request->getFile('student_image');
-        $file_path = $student_image->getTempName();
-        $student_image = $this->cropImage($file_path);
+//        $request_model->insert_data($request_entity);
+//        $id = $request_model->getInsertID();
 
-
-        $request_entity->student_image = $student_image;
-        $id = $request_model->insert_data($request_entity);
-
-        $test = $request_model->find($id);
-        print_r($test);
-        $data['firstname'] = $test->student_firstname;
-
-        return $this->render('public/SuccessView', $data);
+//        echo $this->getData($id);
 
 
+    }
+
+
+    function getData($id): array|object
+    {
+        $model = new RequestModel();
+        return $model->find($id);
     }
 
 

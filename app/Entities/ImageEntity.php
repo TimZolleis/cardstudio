@@ -3,40 +3,22 @@
 namespace App\Entities;
 
 
-use CodeIgniter\HTTP\Files\UploadedFile;
-
 class ImageEntity
 {
-    protected UploadedFile $image_file;
-    protected string $path;
-    protected string $filename;
 
-    public function __construct($image_file)
-    {
-        $this->image_file = $image_file;
-        $this->path = getenv('image.path') . $image_file->getName();
-        $this->filename = $image_file->getName();
-    }
+    public string $student_image;
+    public string $student_image_type;
+    public string $student_image_path;
 
     /**
-     * @return string
+     * @param string $student_image
+     * @param string $student_image_type
      */
-    public function getFilename(): string
+    public function __construct(string $student_image, string $student_image_type, string $student_image_path)
     {
-        return $this->filename;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPath(): string
-    {
-        return $this->path;
-    }
-
-    public function move(): void
-    {
-        $this->image_file->move(getenv('image.path'));
+        $this->student_image = $student_image;
+        $this->student_image_type = $student_image_type;
+        $this->student_image_path = $student_image_path;
     }
 
 

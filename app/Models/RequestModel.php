@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Entities\RequestEntity;
 use CodeIgniter\Database\ConnectionInterface;
 use CodeIgniter\Model;
 use CodeIgniter\Validation\ValidationInterface;
@@ -24,11 +25,33 @@ class RequestModel extends Model
     }
 
 
-    public function insert_data($data)
-    {
-        $this->db->table('cardstudio_requests')->insert($data);
-        return $this->db->insertID();
+    public function insert_data(RequestEntity $requestEntity): int|string
 
+
+    {
+
+
+        $data = [
+            'student_firstname' => $requestEntity->studentEntity->student_firstname,
+            'student_lastname' => $requestEntity->studentEntity->student_lastname,
+            'student_residence' => $requestEntity->studentEntity->student_residence,
+            'student_birthdate' => $requestEntity->studentEntity->student_birthdate,
+            'student_image' => $requestEntity->imageEntity->student_image,
+            'student_image_type' => $requestEntity->imageEntity->student_image_type,
+            'parent_name' => $requestEntity->parentEntity->parent_name,
+            'parent_email' => $requestEntity->parentEntity->parent_email,
+            'created_at' => $requestEntity->created_at,
+            'request_status' => $requestEntity->request_status
+        ];
+
+        return $this->db->table('cardstudio_requests')->insert($data);
+
+
+    }
+
+    public function last_request_id(): int|string
+    {
+        return $this->db->insertID();
     }
 
 }
