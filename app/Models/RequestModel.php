@@ -2,56 +2,41 @@
 
 namespace App\Models;
 
+use App\Entities\ImageEntity;
+use App\Entities\ParentEntity;
 use App\Entities\RequestEntity;
+use App\Entities\StudentEntity;
 use CodeIgniter\Database\ConnectionInterface;
 use CodeIgniter\Model;
 use CodeIgniter\Validation\ValidationInterface;
 
-class RequestModel extends Model
+class RequestModel
 {
-    protected $table = 'cardstudio_requests';
-    protected $DBGroup = 'default';
-    protected $primaryKey = 'request_id';
-    protected $allowedFields = ['created_at', 'request_status', 'student_firstname', 'student_lastname', 'student_birthdate', 'student_residence', 'student_image', 'parent_name', 'parent_email'];
-    protected $returnType = \App\Entities\RequestEntity::class;
+    public ?int $request_id;
+    public string $request_status;
+    public string $created_at;
 
+    public StudentEntity $studentEntity;
+    public ParentEntity $parentEntity;
+    public ImageEntity $imageEntity;
 
-    protected $db;
-
-    public function __construct(?ConnectionInterface $db = null, ?ValidationInterface $validation = null)
+    /**
+     * @param int|null $request_id
+     * @param string $request_status
+     * @param string $created_at
+     * @param StudentEntity $studentEntity
+     * @param ParentEntity $parentEntity
+     * @param ImageEntity $imageEntity
+     */
+    public function __construct(string $request_status, string $created_at, StudentEntity $studentEntity, ParentEntity $parentEntity, ImageEntity $imageEntity, ?int $request_id)
     {
-        parent::__construct();
-        $this->db = \Config\Database::connect('default');
+        $this->request_id = $request_id;
+        $this->request_status = $request_status;
+        $this->created_at = $created_at;
+        $this->studentEntity = $studentEntity;
+        $this->parentEntity = $parentEntity;
+        $this->imageEntity = $imageEntity;
     }
 
-
-    public function insert_data(RequestEntity $requestEntity): int|string
-
-
-    {
-
-
-        $data = [
-            'student_firstname' => $requestEntity->studentEntity->student_firstname,
-            'student_lastname' => $requestEntity->studentEntity->student_lastname,
-            'student_residence' => $requestEntity->studentEntity->student_residence,
-            'student_birthdate' => $requestEntity->studentEntity->student_birthdate,
-            'student_image' => $requestEntity->imageEntity->student_image,
-            'student_image_type' => $requestEntity->imageEntity->student_image_type,
-            'parent_name' => $requestEntity->parentEntity->parent_name,
-            'parent_email' => $requestEntity->parentEntity->parent_email,
-            'created_at' => $requestEntity->created_at,
-            'request_status' => $requestEntity->request_status
-        ];
-
-        return $this->db->table('cardstudio_requests')->insert($data);
-
-
-    }
-
-    public function last_request_id(): int|string
-    {
-        return $this->db->insertID();
-    }
 
 }

@@ -3,12 +3,13 @@
 
 use Config\Services;
 
-function createImage($path, $type): string
+function cropImage(\CodeIgniter\HTTP\Files\UploadedFile $image, $type): string
 {
-    $image = Services::image();
+    $imageService = Services::image();
+    $path = $image->getTempName();
     $extension = getExtension($type);
     try {
-        $image->withFile($path)
+        $imageService->withFile($path)
             ->fit(699, 865, 'center')
             ->save(getPath($extension));
 
@@ -32,3 +33,18 @@ function getExtension($type): string
     return substr($type, -3);
 }
 
+function getImageType(\CodeIgniter\HTTP\Files\UploadedFile $image): string
+{
+    return $image->getMimeType();
+}
+
+
+function createImageEntity($image): \App\Entities\ImageEntity
+{
+    $croppedImage = cropImage($image, getImageType($image));
+    $imageType = getImageType($image);
+
+    return new \App\Entities\ImageEntity($croppedImage, $imageType);
+
+
+}
