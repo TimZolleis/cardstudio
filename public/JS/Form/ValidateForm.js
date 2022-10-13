@@ -1,3 +1,5 @@
+
+
 const form = document.getElementById("form")
 
 form.addEventListener("input", (event) => {
@@ -61,4 +63,9 @@ function removeErrorStyling(fieldId) {
     field.classList.add("border-green-500");
     const errorText = document.getElementById(fieldId + "-error")
     errorText.hidden = true;
+}
+
+
+function testFunction(){
+    alert("test");
 }

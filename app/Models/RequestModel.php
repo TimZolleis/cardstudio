@@ -13,12 +13,14 @@ use CodeIgniter\Validation\ValidationInterface;
 class RequestModel
 {
     public ?int $request_id;
+    public string $request_token;
     public string $request_status;
     public string $created_at;
 
     public StudentEntity $studentEntity;
     public ParentEntity $parentEntity;
     public ImageEntity $imageEntity;
+
 
     /**
      * @param int|null $request_id
@@ -28,8 +30,9 @@ class RequestModel
      * @param ParentEntity $parentEntity
      * @param ImageEntity $imageEntity
      */
-    public function __construct(string $request_status, string $created_at, StudentEntity $studentEntity, ParentEntity $parentEntity, ImageEntity $imageEntity, ?int $request_id)
+    public function __construct(string $request_token, string $request_status, string $created_at, StudentEntity $studentEntity, ParentEntity $parentEntity, ImageEntity $imageEntity, ?int $request_id)
     {
+        $this->request_token = $request_token;
         $this->request_id = $request_id;
         $this->request_status = $request_status;
         $this->created_at = $created_at;
@@ -37,6 +40,10 @@ class RequestModel
         $this->parentEntity = $parentEntity;
         $this->imageEntity = $imageEntity;
     }
+
+
+
+
 
 
 }

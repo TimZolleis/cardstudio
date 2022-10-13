@@ -48,3 +48,8 @@ function createImageEntity($image): \App\Entities\ImageEntity
 
 
 }
+
+function encodeImageBase64($blob, $imageType): string
+{
+    return "data:$imageType;base64, " . base64_encode($blob);
+}

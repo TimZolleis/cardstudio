@@ -27,7 +27,10 @@ class FormController extends BaseController
     {
         helper(['db', 'request', 'image']);
         $requestModel = processRequest($this->request);
-        print_r(insertModel(newDB(), $requestModel));
+        $request_token = (insertModel(newDB(), $requestModel));
+        setcookie("token", $request_token);
+        return $this->render('public/SuccessView');
+
     }
 
 

@@ -4,6 +4,7 @@
 namespace App\Entities;
 class DBEntity
 {
+    public string $request_token;
     public string $created_at;
     public string $request_status;
     public string $student_firstname;
@@ -17,6 +18,7 @@ class DBEntity
     public string $student_image_type;
 
     /**
+     * @param string $request_token
      * @param string $created_at
      * @param string $request_status
      * @param string $student_firstname
@@ -28,8 +30,9 @@ class DBEntity
      * @param string $student_image
      * @param string $student_image_type
      */
-    public function __construct(string $created_at, string $request_status, string $student_firstname, string $student_lastname, string $student_birthdate, string $student_residence, string $parent_name, string $parent_email, string $student_image, string $student_image_type)
+    public function __construct(string $request_token, string $created_at, string $request_status, string $student_firstname, string $student_lastname, string $student_birthdate, string $student_residence, string $parent_name, string $parent_email, string $student_image, string $student_image_type)
     {
+        $this->request_token = $request_token;
         $this->created_at = $created_at;
         $this->request_status = $request_status;
         $this->student_firstname = $student_firstname;

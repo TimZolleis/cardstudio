@@ -38,7 +38,7 @@ $routes->set404Override();
 $routes->get('/', 'FormController::index');
 $routes->post('/apply', 'FormController::createRequest');
 $routes->get('pages', 'Pages::index');
-$routes->get('(:any)', 'Pages::view/$1');
+$routes->get('api/request', 'ApiController::getRequestData');
 
 /*
  * --------------------------------------------------------------------
