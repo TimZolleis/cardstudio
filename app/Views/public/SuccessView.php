@@ -1,13 +1,10 @@
-<div class="mt-5 flex w-full items-center justify-center text-white">
-    <p>Success!</p>
-
-
+<div class="mt-5 flex flex-col  w-full items-center justify-center gap-10 text-white">
+    <canvas id="canvas" class="shadow shadow-xl rounded"></canvas>
+    <button class="bg-card-blue p-3 rounded text-white" id="send_template_button">Abschicken</button>
 </div>
 
+
 <script type="text/javascript">
-
-
-
 
 
     function getCookie(name) {

@@ -19,6 +19,7 @@
                     Informationen
                     über ihr Kind benötigt:</p>
             </div>
+            </div>
             <section class="grid grid-cols-1 mt-5 gap-2 md:grid-cols-2 lg:grid-cols-4">
 
                 <label for="image"

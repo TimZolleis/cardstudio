@@ -29,9 +29,9 @@ function createModelFromDb($data): RequestModel
 
 }
 
-function getBuilder($db)
+function getBuilder($db, $table = 'cardstudio_requests')
 {
-    return $db->table('cardstudio_requests');
+    return $db->table($table);
 }
 
 function insertModel($db, RequestModel $requestModel): string
@@ -60,4 +60,18 @@ function createPdfModel(RequestModel $requestModel, $validUntil): PdfModel
 {
 
     return new PdfModel($requestModel, $validUntil, getPdfFile());
+}
+
+
+function createTemplate(BaseConnection $db, $data)
+{
+    $textFieldBuilder = $db->table('cardstudio_test_fields');
+    $imageFieldBuilder = $db->table('cardstudio_image_fields');
+    $template_builder = $db->table('cardstudio_templates');
+
+
+
+
+
+
 }

@@ -39,6 +39,7 @@ $routes->get('/', 'FormController::index');
 $routes->post('/apply', 'FormController::createRequest');
 $routes->get('pages', 'Pages::index');
 $routes->get('api/request', 'ApiController::getRequestData');
+$routes->post('api/template/new', 'ApiController::setImageTemplateData');
 
 /*
  * --------------------------------------------------------------------
