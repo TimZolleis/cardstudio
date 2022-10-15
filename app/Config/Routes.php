@@ -36,6 +36,8 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'FormController::index');
+$routes->get('/edit', 'EditTemplateController::index');
+$routes->get('/test', 'TestController::index');
 $routes->post('/apply', 'FormController::createRequest');
 $routes->get('pages', 'Pages::index');
 $routes->get('api/request', 'ApiController::getRequestData');

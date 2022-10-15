@@ -1,8 +1,3 @@
-window.onload = function () {
-    main();
-}
-
-
 const button = document.getElementById("send_template_button");
 button.addEventListener("click", () => {
     postApi("http://localhost/cardstudio/public/api/template/new", getComputedFields()).then(r => console.log(r))
@@ -11,7 +6,13 @@ button.addEventListener("click", () => {
 
 let shapes = [];
 
-const scale = 0.5
+const scale = 0.1
+
+const image = new Image();
+image.src = "./assets/pdf/template.png";
+image.onload = () => {
+    main(image.width, image.height, image);
+}
 
 
 function getCanvas(width, height) {
@@ -22,31 +23,22 @@ function getCanvas(width, height) {
     canvasObject.canvas = document.getElementById("canvas");
     canvasObject.context = canvasObject.canvas.getContext("2d");
 
-    canvasObject.canvas.width = width;
-    canvasObject.canvas.height = height;
+    canvasObject.canvas.width = makeSize(width);
+    canvasObject.canvas.height = makeSize(height);
     return canvasObject;
 
 }
 
 
-function drawImageOnCanvas(canvas, posX, posY, width, height) {
-    const image = new Image()
-    image.src = "./assets/pdf/template.jpg"
-    image.onload = function () {
-        canvas.context.drawImage(image, posX, posY, width, height);
-        drawShapes(canvas, shapes)
-
-    }
+function drawImageOnCanvas(image, canvas, posX, posY, width, height) {
+    canvas.context.drawImage(image, posX, posY, makeSize(width), makeSize(height));
+    drawShapes(canvas, shapes)
 }
 
 
-function main() {
-    const initialX = 2031;
-    const initialY = 1276
-    const width = makeSize(initialX);
-    const height = makeSize(initialY)
+function main(width, height, image) {
     const canvas = getCanvas(width, height);
-    drawImageOnCanvas(canvas, 0, 0, width, height)
+    drawImageOnCanvas(image, canvas, 0, 0, width, height)
     shapes.push(getImageShape());
 
     for (let shape of getTextShapes()) {
@@ -56,8 +48,6 @@ function main() {
 
     drawShapes(canvas, shapes);
 
-
-    returnShapes();
 
 }
 
@@ -88,25 +78,25 @@ function getSize(fraction, initialX, initialY) {
 function getImageShape() {
     const imageShape = {
         name: "student_image",
-        x: makeSize(78),
-        y: makeSize(371),
-        width: makeSize(524),
-        height: makeSize(683),
-        color: 'red'
+        x: makeSize(326),
+        y: makeSize(1724),
+        width: makeSize(2181),
+        height: makeSize(2665),
+        color: 'red',
     }
 
     return imageShape;
 }
 
 function getTextShapes() {
-    const textShapeWidth = 600;
-    const textShapeHeight = 100;
+    const textShapeWidth = 2500;
+    const textShapeHeight = 470;
     let textShapes = [];
-    const firstName = getShape(652, 492, textShapeWidth, textShapeHeight, "student_firstname")
-    const lastname = getShape(652, 732, textShapeWidth, textShapeHeight, "student_lastname")
-    const birthdate = getShape(652, 974, textShapeWidth, textShapeHeight, "student_birthdate")
-    const valid = getShape(1383, 492, textShapeWidth, textShapeHeight, "template_valid")
-    const residence = getShape(1383, 732, textShapeWidth, textShapeHeight, "student_residence")
+    const firstName = getShape(2729, 2032, textShapeWidth, textShapeHeight, "student_firstname")
+    const lastname = getShape(2729, 3027, textShapeWidth, textShapeHeight, "student_lastname")
+    const birthdate = getShape(2729, 4006, textShapeWidth, textShapeHeight, "student_birthdate")
+    const valid = getShape(5772, 2033, textShapeWidth, textShapeHeight, "template_valid")
+    const residence = getShape(5772, 3028, textShapeWidth, textShapeHeight, "student_residence")
     textShapes.push(firstName, lastname, birthdate, valid, residence)
 
     return textShapes;
@@ -130,9 +120,6 @@ function getShape(x, y, width, height, name) {
 
 
 function drawShapes(canvas, shapes) {
-
-    console.log("drawing shapes");
-
     for (let shape of shapes) {
         canvas.context.fillStyle = shape.color;
         canvas.context.fillRect(shape.x, shape.y, shape.width, shape.height)

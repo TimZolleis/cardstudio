@@ -6,7 +6,9 @@ use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use function App\Helpers\createModelFromDb;
 use function App\Helpers\createPdfModel;
+use function App\Helpers\createTemplate;
 use function App\Helpers\getStudentData;
+use function App\Helpers\newDB;
 
 
 class ApiController extends ResourceController
@@ -25,15 +27,10 @@ class ApiController extends ResourceController
 
     public function setImageTemplateData()
     {
+        helper(['db']);
         $data = json_decode($this->request->getBody());
-
-
-
-
-
-
-
-        return $this->respond($data);
+        createTemplate(newDB(), $data);
+        return $this->respond($data->student_image->x);
 
     }
 
